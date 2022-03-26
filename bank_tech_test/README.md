@@ -12,7 +12,7 @@ npm install --save-dev jest
 
 To install this code from the latest source
 ~~~~
-git clone 
+git@github.com:nyahehnagi/tech_tests.git
 ~~~~
 
 
