@@ -28,4 +28,11 @@ describe('account', () => {
     });    
   })
 
+  describe('withdraw', () => {
+    it('has balance of -500 if withdraw 500', () => {
+      account.withdraw(500)
+      expect(account.getBalance()).toBe(-500);
+    })
+  })
+
 });
