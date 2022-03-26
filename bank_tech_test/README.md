@@ -1,33 +1,40 @@
 # Bank tech test
 
-----------------------
+---
+
 ## Installation
-----------------------
+
+---
+
 Install node via your favourite package manager if required, see [here](https://nodejs.org/en/ "Node") for more details
 
 Install jest if not already
-~~~~
+
+```
 npm install --save-dev jest
-~~~~
+```
 
 To install this code from the latest source
-~~~~
-git@github.com:nyahehnagi/tech_tests.git
-~~~~
 
+```
+git@github.com:nyahehnagi/tech_tests.git
+```
 
 ## Testing
------------------------
+
+---
+
 To run jest tests
-~~~~
+
+```
 $> npx jest
-~~~~
+```
 
 # Bank tech test
 
 Today, you'll practice doing a tech test.
 
-For most tech tests, you'll essentially have unlimited time.  This practice session is about producing the best code you can when there is a minimal time pressure.
+For most tech tests, you'll essentially have unlimited time. This practice session is about producing the best code you can when there is a minimal time pressure.
 
 You'll get to practice your OO design and TDD skills.
 
@@ -37,10 +44,10 @@ You'll work alone, and you'll also review your own code so you can practice refl
 
 ### Requirements
 
-* You should be able to interact with your code via a REPL like IRB or Node.  (You don't need to implement a command line interface that takes input from STDIN.)
-* Deposits, withdrawal.
-* Account statement (date, amount, balance) printing.
-* Data can be kept in memory (it doesn't need to be stored to a database or anything).
+- You should be able to interact with your code via a REPL like IRB or Node. (You don't need to implement a command line interface that takes input from STDIN.)
+- Deposits, withdrawal.
+- Account statement (date, amount, balance) printing.
+- Data can be kept in memory (it doesn't need to be stored to a database or anything).
 
 ### Acceptance criteria
 
@@ -60,4 +67,3 @@ date || credit || debit || balance
 ## Self-assessment
 
 Once you have completed the challenge and feel happy with your solution, here's a form to help you reflect on the quality of your code: https://docs.google.com/forms/d/1Q-NnqVObbGLDHxlvbUfeAC7yBCf3eCjTmz6GOqC9Aeo/edit
-

@@ -1,18 +1,18 @@
 class Account {
   constructor() {
-    this.balance = 0
+    this.balance = 0;
   }
 
   getBalance() {
-    return this.balance
+    return this.balance;
   }
 
   deposit(amount) {
-    return this.balance += amount
+    return (this.balance += amount);
   }
 
   withdraw(amount) {
-    return this.balance -= amount
+    return (this.balance -= amount);
   }
 }
 
