@@ -12,14 +12,12 @@ class Account {
   }
 
   deposit(amount, dateTransacted) {
-    this.balance += amount;
     this.transactions.unshift(
       new Transaction(amount, dateTransacted, this.balance)
     );
   }
 
   withdraw(amount, dateTransacted) {
-    this.balance -= amount;
     this.transactions.unshift(
       new Transaction(-amount, dateTransacted, this.balance)
     );
