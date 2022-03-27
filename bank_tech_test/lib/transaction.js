@@ -2,7 +2,6 @@ class Transaction {
   constructor(amount, dateTransacted, balanceOnTransaction) {
     this.amount = amount;
     this.dateTransacted = dateTransacted;
-    this.balanceOnTransaction = balanceOnTransaction;
   }
 
   getAmount() {
