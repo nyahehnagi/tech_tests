@@ -1,7 +1,8 @@
 class Transaction {
-  constructor(amount, dateTransacted) {
+  constructor(amount, dateTransacted, balanceOnTransaction) {
     this.amount = amount;
     this.dateTransacted = dateTransacted
+    this.balanceOnTransaction = balanceOnTransaction
   }
 
   getAmount() {
@@ -12,6 +13,9 @@ class Transaction {
     return this.dateTransacted;
   }
 
+  getBalanceOnTransaction() {
+    return this.balanceOnTransaction;
+  }
 }
 
 module.exports = Transaction;

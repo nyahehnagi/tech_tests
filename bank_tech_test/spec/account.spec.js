@@ -39,5 +39,11 @@ describe("account", () => {
       expect(account.statement()).toBe("10/01/2023 || 1000.00 || || 1000.00")
     })
 
+    it('show the statement for 2 deposits', () => {
+      account.deposit(1000, '10-01-2023')
+      account.deposit(2000, '13-01-2023')
+      expect(account.statement()).toBe("13/01/2023 || 2000.00 || || 3000.00\r\n10/01/2023 || 1000.00 || || 1000.00")
+    })
+
   })
 });
