@@ -25,22 +25,30 @@ class Account {
 
   statement() {
     let statement = this.transactions.map((transaction, index) => {
-      const dateTransacted = moment(transaction.dateTransacted, "DD-MM-YYYY");
-      const amount = transaction.getAmount();
-
-      let statementLine = moment(dateTransacted).format("DD/MM/YYYY");
-      statementLine +=
-        amount > 0
-          ? ` || ${amount.toFixed(2)} || || `
-          : ` || || ${(-amount).toFixed(2)} || `;
-      statementLine += `${this.#calculateBalanceAtIndex(index).toFixed(2)}`;
-
-      return statementLine;
+      return this.#formatStatementLine(transaction, index)
     });
 
-    statement.unshift("date || credit || debit || balance");
+    this.#addStatementHeader(statement)
 
     return statement.join("\r\n");
+  }
+
+  #addStatementHeader(statement){
+    return statement.unshift("date || credit || debit || balance");
+  }
+
+  #formatStatementLine(transaction, index){
+    const dateTransacted = moment(transaction.dateTransacted, "DD-MM-YYYY");
+    const amount = transaction.getAmount();
+
+    let statementLine = moment(dateTransacted).format("DD/MM/YYYY");
+    statementLine +=
+      amount > 0
+        ? ` || ${amount.toFixed(2)} || || `
+        : ` || || ${(-amount).toFixed(2)} || `;
+    statementLine += `${this.#calculateBalanceAtIndex(index).toFixed(2)}`;
+
+    return statementLine;
   }
 
   #calculateBalanceAtIndex(index){
