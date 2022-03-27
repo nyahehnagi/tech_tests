@@ -10,4 +10,9 @@ describe("transaction", () => {
     transaction = new Transaction(1000, "10-01-2023")
     expect(transaction.getDateTransacted()).toBe("10-01-2023")
   })
+
+  it("has a balance on transaction", () => {
+    transaction = new Transaction(1000, "10-01-2023", 1000)
+    expect(transaction.getBalanceOnTransaction()).toBe(1000)
+  })
 })
