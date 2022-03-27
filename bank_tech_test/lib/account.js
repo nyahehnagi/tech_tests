@@ -24,16 +24,20 @@ class Account {
 
   statement(){
 
-    return this.transactions.map ( transaction => {
+    let statement =  this.transactions.map ( transaction => {
       const dateTransacted = moment(transaction.dateTransacted, 'DD-MM-YYYY'); 
       const amount = transaction.getAmount()
-      
+
       let statementLine = moment(dateTransacted).format("DD/MM/YYYY")
       statementLine += amount > 0 ? ` || ${amount.toFixed(2)} || || ` : ` || || ${(-amount).toFixed(2)} || `
       statementLine += `${transaction.getBalanceOnTransaction().toFixed(2)}`
 
       return statementLine
-    }).join("\r\n")
+    })
+
+    statement.unshift("date || credit || debit || balance")
+    
+    return statement.join("\r\n")
     
   }
 }
