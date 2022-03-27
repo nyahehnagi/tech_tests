@@ -26,7 +26,7 @@ class Account {
 
     return this.transactions.map ( transaction => {
       var dateTransacted = moment(transaction.dateTransacted, 'DD-MM-YYYY'); 
-      return moment(dateTransacted).format("DD/MM/YYYY") + " || 1000.00 || || 1000.00"  
+      return moment(dateTransacted).format("DD/MM/YYYY") + ` || ${transaction.getAmount().toFixed(2)} || || ${this.getBalance().toFixed(2)}`  
     }).join()
     
   }
