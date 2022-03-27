@@ -1,44 +1,56 @@
 const Transaction = require("./transaction");
-const moment = require("moment")
+const moment = require("moment");
 
 class Account {
   constructor(transactionClass) {
-    this.balance = 0;
-    this.transactionClass = transactionClass
-    this.transactions = []
+    this.transactionClass = transactionClass;
+    this.transactions = [];
   }
 
   getBalance() {
-    return this.balance;
+    return this.#calculateBalanceAtIndex(0);
   }
 
   deposit(amount, dateTransacted) {
     this.balance += amount;
-    this.transactions.unshift(new Transaction(amount, dateTransacted, this.balance))
+    this.transactions.unshift(
+      new Transaction(amount, dateTransacted, this.balance)
+    );
   }
 
   withdraw(amount, dateTransacted) {
     this.balance -= amount;
-    this.transactions.unshift(new Transaction(-amount, dateTransacted, this.balance))
+    this.transactions.unshift(
+      new Transaction(-amount, dateTransacted, this.balance)
+    );
   }
 
-  statement(){
+  statement() {
+    let statement = this.transactions.map((transaction, index) => {
+      const dateTransacted = moment(transaction.dateTransacted, "DD-MM-YYYY");
+      const amount = transaction.getAmount();
 
-    let statement =  this.transactions.map ( transaction => {
-      const dateTransacted = moment(transaction.dateTransacted, 'DD-MM-YYYY'); 
-      const amount = transaction.getAmount()
+      let statementLine = moment(dateTransacted).format("DD/MM/YYYY");
+      statementLine +=
+        amount > 0
+          ? ` || ${amount.toFixed(2)} || || `
+          : ` || || ${(-amount).toFixed(2)} || `;
+      statementLine += `${this.#calculateBalanceAtIndex(index).toFixed(2)}`;
 
-      let statementLine = moment(dateTransacted).format("DD/MM/YYYY")
-      statementLine += amount > 0 ? ` || ${amount.toFixed(2)} || || ` : ` || || ${(-amount).toFixed(2)} || `
-      statementLine += `${transaction.getBalanceOnTransaction().toFixed(2)}`
+      return statementLine;
+    });
 
-      return statementLine
-    })
+    statement.unshift("date || credit || debit || balance");
 
-    statement.unshift("date || credit || debit || balance")
-    
-    return statement.join("\r\n")
-    
+    return statement.join("\r\n");
+  }
+
+  #calculateBalanceAtIndex(index){
+    let balance = 0
+    for (var i = index ; i <= this.transactions.length -1; i++) {
+      balance += this.transactions[i].getAmount()
+    }
+    return balance
   }
 }
 

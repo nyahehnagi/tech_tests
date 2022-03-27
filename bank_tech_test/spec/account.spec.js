@@ -1,16 +1,16 @@
 const Account = require("../lib/account.js");
+const Transaction = require("../lib/transaction.js");
 
 describe("account", () => {
   let account;
   beforeEach(() => {
-    account = new Account();
+    account = new Account(Transaction);
   });
 
   describe("#getBalance", () => {
     it("has a balance of 0 on opening/instantiation", () => {
       expect(account.getBalance()).toBe(0);
     });
-
   });
 
   describe("#deposit", () => {
@@ -33,25 +33,30 @@ describe("account", () => {
     });
   });
 
-  describe('#statement', () => {
-    it('show the statement for a single deposit', () => {
-      account.deposit(1000, '10-01-2023')
-      expect(account.statement()).toBe("date || credit || debit || balance\r\n10/01/2023 || 1000.00 || || 1000.00")
-    })
+  describe("#statement", () => {
+    it("show the statement for a single deposit", () => {
+      account.deposit(1000, "10-01-2023");
 
-    it('show the statement for 2 deposits', () => {
-      account.deposit(1000, '10-01-2023')
-      account.deposit(2000, '13-01-2023')
-      expect(account.statement()).toBe("date || credit || debit || balance\r\n13/01/2023 || 2000.00 || || 3000.00\r\n10/01/2023 || 1000.00 || || 1000.00")
-    })
+      expect(account.statement()).toBe(
+        "date || credit || debit || balance\r\n10/01/2023 || 1000.00 || || 1000.00"
+      );
+    });
 
-    
-    it('show the statement for 2 deposits and withdrawal', () => {
-      account.deposit(1000, '10-01-2023')
-      account.deposit(2000, '13-01-2023')
-      account.withdraw(500, '14-01-2023')
-      expect(account.statement()).toBe("date || credit || debit || balance\r\n14/01/2023 || || 500.00 || 2500.00\r\n13/01/2023 || 2000.00 || || 3000.00\r\n10/01/2023 || 1000.00 || || 1000.00")
-    })
+    it("show the statement for 2 deposits", () => {
+      account.deposit(1000, "10-01-2023");
+      account.deposit(2000, "13-01-2023");
+      expect(account.statement()).toBe(
+        "date || credit || debit || balance\r\n13/01/2023 || 2000.00 || || 3000.00\r\n10/01/2023 || 1000.00 || || 1000.00"
+      );
+    });
 
-  })
+    it("show the statement for 2 deposits and withdrawal", () => {
+      account.deposit(1000, "10-01-2023");
+      account.deposit(2000, "13-01-2023");
+      account.withdraw(500, "14-01-2023");
+      expect(account.statement()).toBe(
+        "date || credit || debit || balance\r\n14/01/2023 || || 500.00 || 2500.00\r\n13/01/2023 || 2000.00 || || 3000.00\r\n10/01/2023 || 1000.00 || || 1000.00"
+      );
+    });
+  });
 });
