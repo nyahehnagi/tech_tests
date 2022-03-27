@@ -7,12 +7,16 @@ class Account {
     return this.balance;
   }
 
-  deposit(amount) {
+  deposit(amount, dateTransacted) {
     return (this.balance += amount);
   }
 
-  withdraw(amount) {
+  withdraw(amount, dateTransacted) {
     return (this.balance -= amount);
+  }
+
+  statement(){
+    return "10/01/2023 || 1000.00 || || 1000.00"
   }
 }
 

@@ -39,4 +39,12 @@ describe("account", () => {
       expect(account.withdraw(500)).toBe(-500);
     });
   });
+
+  describe('#statement', () => {
+    it('show the statement for a single deposit', () => {
+      account.deposit(1000, '10-01-2023')
+      expect(account.statement()).toBe("10/01/2023 || 1000.00 || || 1000.00")
+    })
+
+  })
 });
