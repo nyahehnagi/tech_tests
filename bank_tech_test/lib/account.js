@@ -1,6 +1,10 @@
+const Transaction = require("./transaction");
+
 class Account {
-  constructor() {
+  constructor(transactionClass) {
     this.balance = 0;
+    this.transactionClass = transactionClass
+    this.transactions = []
   }
 
   getBalance() {
@@ -8,11 +12,13 @@ class Account {
   }
 
   deposit(amount, dateTransacted) {
-    return (this.balance += amount);
+    this.transactions.push(new Transaction(amount, dateTransacted))
+    this.balance += amount;
   }
 
   withdraw(amount, dateTransacted) {
-    return (this.balance -= amount);
+    this.transactions.push(new Transaction(-amount, dateTransacted))
+    this.balance -= amount;
   }
 
   statement(){

@@ -11,6 +11,9 @@ describe("account", () => {
       expect(account.getBalance()).toBe(0);
     });
 
+  });
+
+  describe("#deposit", () => {
     it("has balance of 1000 after depositing 1000", () => {
       account.deposit(1000);
       expect(account.getBalance()).toBe(1000);
@@ -21,22 +24,12 @@ describe("account", () => {
       account.deposit(2000);
       expect(account.getBalance()).toBe(3000);
     });
-
-    it("has balance of -500 if withdraw 500", () => {
-      account.withdraw(500);
-      expect(account.getBalance()).toBe(-500);
-    });
-  });
-
-  describe("#deposit", () => {
-    it("returns a balance after depositing 1000", () => {
-      expect(account.deposit(1000)).toBe(1000);
-    });
   });
 
   describe("withdraw", () => {
-    it("returns a balance after withdrawing 500", () => {
-      expect(account.withdraw(500)).toBe(-500);
+    it("has balance of -500 if withdraw 500", () => {
+      account.withdraw(500);
+      expect(account.getBalance()).toBe(-500);
     });
   });
 
