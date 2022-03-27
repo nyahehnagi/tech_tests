@@ -1,4 +1,5 @@
 const Transaction = require("./transaction");
+const moment = require("moment")
 
 class Account {
   constructor(transactionClass) {
@@ -22,7 +23,12 @@ class Account {
   }
 
   statement(){
-    return "10/01/2023 || 1000.00 || || 1000.00"
+
+    return this.transactions.map ( transaction => {
+      var dateTransacted = moment(transaction.dateTransacted, 'DD-MM-YYYY'); 
+      return moment(dateTransacted).format("DD/MM/YYYY") + " || 1000.00 || || 1000.00"  
+    }).join()
+    
   }
 }
 
