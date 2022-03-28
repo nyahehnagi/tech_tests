@@ -3,6 +3,7 @@ const Transaction = require("../lib/transaction.js");
 const StatementFormatter = require("../lib/statementformatter.js");
 
 describe("account", () => {
+
   let account;
   beforeEach(() => {
     account = new Account(Transaction, StatementFormatter);
@@ -42,11 +43,11 @@ describe("account", () => {
   });
 
   describe("printStatement", () => {
-    it("returns a statement", () => {
+    it("checks that generateStatement has beenn called", () => {
       account.deposit(1000, "10-01-2023");
-      expect(account.printStatement()).toBe(
-        "date || credit || debit || balance\r\n10/01/2023 || 1000.00 || || 1000.00"
-      );
+      const spy = jest.spyOn(StatementFormatter.prototype, 'generateStatement');
+      account.printStatement()
+      expect(spy).toHaveBeenCalled();
     });
   });
 
