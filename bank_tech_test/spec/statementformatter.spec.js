@@ -23,7 +23,7 @@ describe("StatementFormatter", () => {
       account.deposit(1000, "10-01-2023");
       account.deposit(2000, "13-01-2023");
       expect(statementFormatter.generateStatement()).toBe(
-        "date || credit || debit || balance\r\n13/01/2023 || 2000.00 || || 3000.00\r\n10/01/2023 || 1000.00 || || 1000.00"
+        "date || credit || debit || balance" + "\r\n" + "13/01/2023 || 2000.00 || || 3000.00\r\n10/01/2023 || 1000.00 || || 1000.00"
       );
     });
 
