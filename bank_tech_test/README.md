@@ -11,14 +11,20 @@ Install node via your favourite package manager if required, see [here](https://
 Install jest if not already
 
 ```
-npm install --save-dev jest
+$> npm install --save-dev jest
 ```
 
 To install this code from the latest source
 
 ```
-git@github.com:nyahehnagi/tech_tests.git
+$> git@github.com:nyahehnagi/tech_tests.git
+
 ```
+navigate to the bank_tech_test directory
+```
+$> cd bank_tech_test
+```
+
 
 ## Testing
 
@@ -32,7 +38,9 @@ $> npx jest
 
 ## How to use
 
-Start `node` from root of application
+Start node from root of application
+
+`$> node`
 
 perform the following actions as demonstrated in the screenshot
 
