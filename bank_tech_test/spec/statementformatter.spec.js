@@ -1,13 +1,13 @@
 const Account = require("../lib/account.js");
-const Transaction = require("../lib/transaction.js");
 const StatementFormatter = require("../lib/statementformatter.js");
 
 describe("StatementFormatter", () => {
   describe("#generateStatement", () => {
     let account;
     let statementFormatter;
+    
     beforeEach(() => {
-      account = new Account(Transaction, StatementFormatter);
+      account = new Account(StatementFormatter);
       statementFormatter = new StatementFormatter(account);
     });
 

@@ -1,6 +1,5 @@
 class Account {
-  constructor(transactionClass, statementFormatterClass) {
-    this.transactionClass = transactionClass;
+  constructor(statementFormatterClass) {
     this.statementFormatterClass = statementFormatterClass;
     this.transactions = [];
   }
@@ -13,13 +12,13 @@ class Account {
 
   deposit(amount, dateTransacted) {
     this.transactions.unshift(
-      new this.transactionClass(amount, dateTransacted)
+      {amount: amount, dateTransacted: dateTransacted}
     );
   }
 
   withdraw(amount, dateTransacted) {
     this.transactions.unshift(
-      new this.transactionClass(-amount, dateTransacted)
+      {amount: -amount, dateTransacted: dateTransacted}
     );
   }
 
@@ -34,7 +33,7 @@ class Account {
   #calculateBalanceAtIndex(index) {
     let balance = 0;
     for (var i = index; i <= this.transactions.length - 1; i++) {
-      balance += this.transactions[i].getAmount();
+      balance += this.transactions[i].amount;
     }
     return balance;
   }

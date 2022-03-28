@@ -31,7 +31,7 @@ class StatementFormatter {
   }
 
   #formatDebitCredit(transaction) {
-    const amount = transaction.getAmount();
+    const amount = transaction.amount;
     return amount > 0
       ? ` || ${amount.toFixed(2)} || || `
       : ` || || ${(-amount).toFixed(2)} || `;
