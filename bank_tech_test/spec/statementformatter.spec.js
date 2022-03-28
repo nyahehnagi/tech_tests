@@ -3,23 +3,29 @@ const StatementFormatter = require("../lib/statementformatter.js");
 
 describe("StatementFormatter", () => {
   describe("#generateStatement", () => {
-    let account;
+
     let statementFormatter;
 
     beforeEach(() => {
       statementFormatter = new StatementFormatter();
-      account = new Account(StatementFormatter);
     });
 
     it("show the statement for a single deposit", () => {
-      account.deposit(1000, "10-01-2023");
+      Account.getTransactions = jest
+        .fn(Account.getTransactions)
+        .mockImplementation(() => [{amount: 1000, dateTransacted:"10-01-2023"}])
 
-      expect(statementFormatter.generateStatement(account)).toBe(
+      Account.getBalance = jest
+        .fn(Account.getBalance)
+        .mockImplementation(() => 1000)
+    
+      expect(statementFormatter.generateStatement(Account)).toBe(
         "date || credit || debit || balance\r\n10/01/2023 || 1000.00 || || 1000.00"
       );
     });
 
     it("show the statement for 2 deposits", () => {
+      account = new Account()
       account.deposit(1000, "10-01-2023");
       account.deposit(2000, "13-01-2023");
       expect(statementFormatter.generateStatement(account)).toBe(
@@ -28,6 +34,7 @@ describe("StatementFormatter", () => {
     });
 
     it("show the statement for 2 deposits and withdrawal", () => {
+      account = new Account()
       account.deposit(1000, "10-01-2023");
       account.deposit(2000, "13-01-2023");
       account.withdraw(500, "14-01-2023");
