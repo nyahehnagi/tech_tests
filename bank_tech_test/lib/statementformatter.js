@@ -1,47 +1,46 @@
 const moment = require("moment");
+const STATEMENT_HEADER = "date || credit || debit || balance";
 
 class StatementFormatter {
-  
   constructor(account) {
-    this.account = account
+    this.account = account;
   }
 
-  generateStatement(){
+  generateStatement() {
     let statement = this.account.getTransactions().map((transaction, index) => {
-      return this.#formatStatementLine(transaction, index)
+      return this.#formatStatementLine(transaction, index);
     });
 
-    this.#addStatementHeader(statement)
+    this.#addStatementHeader(statement);
     return statement.join("\r\n");
   }
 
-  #addStatementHeader(statement){
-    return statement.unshift("date || credit || debit || balance");
+  #addStatementHeader(statement) {
+    return statement.unshift(STATEMENT_HEADER);
   }
 
-  #formatStatementLine(transaction, index){
-    let statementLine =  this.#formatTransactionDate(transaction)
-    statementLine += this.#formatDebitCredit(transaction)
-    statementLine += this.#formatBalanceAtTransaction(index)
+  #formatStatementLine(transaction, index) {
+    let statementLine = this.#formatTransactionDate(transaction);
+    statementLine += this.#formatDebitCredit(transaction);
+    statementLine += this.#formatBalanceAtTransaction(index);
     return statementLine;
   }
 
-  #formatBalanceAtTransaction(index){
+  #formatBalanceAtTransaction(index) {
     return `${this.account.getBalance(index).toFixed(2)}`;
   }
 
-  #formatDebitCredit(transaction){
+  #formatDebitCredit(transaction) {
     const amount = transaction.getAmount();
     return amount > 0
-    ? ` || ${amount.toFixed(2)} || || `
-    : ` || || ${(-amount).toFixed(2)} || `;
+      ? ` || ${amount.toFixed(2)} || || `
+      : ` || || ${(-amount).toFixed(2)} || `;
   }
 
-  #formatTransactionDate(transaction){
+  #formatTransactionDate(transaction) {
     const dateTransacted = moment(transaction.dateTransacted, "DD-MM-YYYY");
     return moment(dateTransacted).format("DD/MM/YYYY");
   }
-
 }
 
 module.exports = StatementFormatter;

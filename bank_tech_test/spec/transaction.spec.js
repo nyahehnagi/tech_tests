@@ -10,5 +10,4 @@ describe("transaction", () => {
     transaction = new Transaction(1000, "10-01-2023");
     expect(transaction.getDateTransacted()).toBe("10-01-2023");
   });
-
 });

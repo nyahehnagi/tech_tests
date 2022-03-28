@@ -6,7 +6,9 @@ class Account {
   }
 
   getBalance(transactionID) {
-    return !transactionID ? this.#calculateBalanceAtIndex(0) : this.#calculateBalanceAtIndex(transactionID)
+    return !transactionID
+      ? this.#calculateBalanceAtIndex(0)
+      : this.#calculateBalanceAtIndex(transactionID);
   }
 
   deposit(amount, dateTransacted) {
@@ -21,22 +23,21 @@ class Account {
     );
   }
 
-  getTransactions(){
-    return this.transactions
+  getTransactions() {
+    return this.transactions;
   }
 
   printStatement() {
-    return new this.statementFormatterClass(this.self).generateStatement()
+    return new this.statementFormatterClass(this.self).generateStatement();
   }
 
-  #calculateBalanceAtIndex(index){
-    let balance = 0
-    for (var i = index ; i <= this.transactions.length -1; i++) {
-      balance += this.transactions[i].getAmount()
+  #calculateBalanceAtIndex(index) {
+    let balance = 0;
+    for (var i = index; i <= this.transactions.length - 1; i++) {
+      balance += this.transactions[i].getAmount();
     }
-    return balance
+    return balance;
   }
-
 }
 
 module.exports = Account;

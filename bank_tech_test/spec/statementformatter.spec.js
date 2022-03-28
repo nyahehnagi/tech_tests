@@ -3,14 +3,12 @@ const Transaction = require("../lib/transaction.js");
 const StatementFormatter = require("../lib/statementformatter.js");
 
 describe("StatementFormatter", () => {
-
   describe("#generateStatement", () => {
-
     let account;
     let statementFormatter;
     beforeEach(() => {
       account = new Account(Transaction, StatementFormatter);
-      statementFormatter = new StatementFormatter(account)
+      statementFormatter = new StatementFormatter(account);
     });
 
     it("show the statement for a single deposit", () => {

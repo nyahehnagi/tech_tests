@@ -19,7 +19,7 @@ describe("account", () => {
       account.deposit(1000);
       expect(account.getTransactions().length).toBe(1);
     });
-  })
+  });
 
   describe("#deposit", () => {
     it("has balance of 1000 after depositing 1000", () => {
