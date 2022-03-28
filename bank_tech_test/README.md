@@ -30,6 +30,14 @@ To run jest tests
 $> npx jest
 ```
 
+## How to use
+
+Start `node` from root of application
+
+perform the following actions as demonstrated in the screenshot
+
+![alt text](https://github.com/nyahehnagi/tech_tests/blob/main/bank_tech_test/docs/bank_tech_test_screenshot.png)
+
 # Bank tech test
 
 Today, you'll practice doing a tech test.
