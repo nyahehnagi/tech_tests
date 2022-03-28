@@ -5,8 +5,8 @@ class Account {
   }
 
   // Default to the most recent transaction
-  getBalance(transactionID = 0) {
-    return this.#calculateBalanceAtIndex(transactionID);
+  getBalance(transactionLocation = 0) {
+    return this.#calculateBalanceAtIndex(transactionLocation);
   }
 
   deposit(amount, dateTransacted) {
