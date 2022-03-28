@@ -38,17 +38,28 @@ class Account {
   }
 
   #formatStatementLine(transaction, index){
-    const dateTransacted = moment(transaction.dateTransacted, "DD-MM-YYYY");
-    const amount = transaction.getAmount();
-
-    let statementLine = moment(dateTransacted).format("DD/MM/YYYY");
-    statementLine +=
-      amount > 0
-        ? ` || ${amount.toFixed(2)} || || `
-        : ` || || ${(-amount).toFixed(2)} || `;
-    statementLine += `${this.#calculateBalanceAtIndex(index).toFixed(2)}`;
+    
+    let statementLine =  this.#formatTransactionDate(transaction)
+    statementLine += this.#formatDebitCredit(transaction)
+    statementLine += this.#formatBalanceAtTransaction(index)
 
     return statementLine;
+  }
+
+  #formatBalanceAtTransaction(index){
+    return `${this.#calculateBalanceAtIndex(index).toFixed(2)}`;
+  }
+
+  #formatDebitCredit(transaction){
+    const amount = transaction.getAmount();
+    return amount > 0
+    ? ` || ${amount.toFixed(2)} || || `
+    : ` || || ${(-amount).toFixed(2)} || `;
+  }
+
+  #formatTransactionDate(transaction){
+    const dateTransacted = moment(transaction.dateTransacted, "DD-MM-YYYY");
+    return moment(dateTransacted).format("DD/MM/YYYY");
   }
 
   #calculateBalanceAtIndex(index){
