@@ -15,9 +15,20 @@ describe("account", () => {
 
   describe("#getTransactions", () => {
     it("has a transaction ", () => {
-      account.deposit(1000);
+      account.deposit(1000, '25-12-2022');
       expect(account.getTransactions().length).toBe(1);
+      expect(account.getTransactions()[0].amount).toBe(1000);
+      expect(account.getTransactions()[0].dateTransacted).toBe('25-12-2022');
     });
+
+    it("has 2 transactions ", () => {
+      account.deposit(1000, '25-12-2022');
+      account.withdraw(500, '26-12-2022');
+      expect(account.getTransactions().length).toBe(2);
+      expect(account.getTransactions()[0].amount).toBe(-500);
+      expect(account.getTransactions()[0].dateTransacted).toBe('26-12-2022');
+    });
+
   });
 
   describe("#deposit", () => {
