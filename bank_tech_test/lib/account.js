@@ -4,10 +4,9 @@ class Account {
     this.transactions = [];
   }
 
-  getBalance(transactionID) {
-    return !transactionID
-      ? this.#calculateBalanceAtIndex(0)
-      : this.#calculateBalanceAtIndex(transactionID);
+  // Default to the most recent transaction
+  getBalance(transactionID = 0) {
+    return  this.#calculateBalanceAtIndex(transactionID);
   }
 
   deposit(amount, dateTransacted) {
