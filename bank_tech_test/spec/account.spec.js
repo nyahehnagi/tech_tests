@@ -1,11 +1,11 @@
 const Account = require("../lib/account.js");
 const Transaction = require("../lib/transaction.js");
+const StatementFormatter = require("../lib/statementformatter.js");
 
 describe("account", () => {
-
   let account;
   beforeEach(() => {
-    account = new Account(Transaction);
+    account = new Account(Transaction, StatementFormatter);
   });
 
   describe("#getBalance", () => {
@@ -40,4 +40,14 @@ describe("account", () => {
       expect(account.getBalance()).toBe(-500);
     });
   });
+
+  describe("printStatement", () => {
+    it("returns a statement", () => {
+      account.deposit(1000, "10-01-2023");
+      expect(account.printStatement()).toBe(
+        "date || credit || debit || balance\r\n10/01/2023 || 1000.00 || || 1000.00"
+      );
+    });
+  });
+
 });

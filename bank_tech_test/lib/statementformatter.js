@@ -7,6 +7,7 @@ class StatementFormatter {
   }
 
   generateStatement() {
+    console.log(this.account.getTransactions())
     let statement = this.account.getTransactions().map((transaction, index) => {
       return this.#formatStatementLine(transaction, index);
     });

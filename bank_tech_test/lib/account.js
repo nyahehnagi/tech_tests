@@ -28,7 +28,7 @@ class Account {
   }
 
   printStatement() {
-    return new this.statementFormatterClass(this.self).generateStatement();
+    return new this.statementFormatterClass(this).generateStatement();
   }
 
   #calculateBalanceAtIndex(index) {
