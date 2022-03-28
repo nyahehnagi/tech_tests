@@ -17,7 +17,7 @@ $> npm install --save-dev jest
 To install this code from the latest source
 
 ```
-$> git@github.com:nyahehnagi/tech_tests.git
+$> git clone git@github.com:nyahehnagi/tech_tests.git
 
 ```
 navigate to the bank_tech_test directory
@@ -37,6 +37,7 @@ $> npx jest
 ```
 
 ## How to use
+---
 
 Start node from root of application
 
