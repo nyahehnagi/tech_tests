@@ -40,7 +40,9 @@ describe("StatementFormatter", () => {
       expect(statementFormatter.generateStatement(Account)).toBe(
         "date || credit || debit || balance" +
           "\r\n" +
-          "13/01/2023 || 2000.00 || || 3000.00\r\n10/01/2023 || 1000.00 || || 1000.00"
+          "13/01/2023 || 2000.00 || || 3000.00" +
+          "\r\n" +
+          "10/01/2023 || 1000.00 || || 1000.00"
       );
     });
 
@@ -50,17 +52,23 @@ describe("StatementFormatter", () => {
         .mockImplementation(() => [
           { amount: -500, dateTransacted: "14-01-2023" },
           { amount: 2000, dateTransacted: "13-01-2023" },
-          { amount: 1000, dateTransacted: "10-01-2023" }
+          { amount: 1000, dateTransacted: "10-01-2023" },
         ]);
 
       Account.getBalance = jest
-      .fn(Account.getBalance)
-      .mockReturnValueOnce(2500)
-      .mockReturnValueOnce(3000)
-      .mockReturnValueOnce(1000)
-      
+        .fn(Account.getBalance)
+        .mockReturnValueOnce(2500)
+        .mockReturnValueOnce(3000)
+        .mockReturnValueOnce(1000);
+
       expect(statementFormatter.generateStatement(Account)).toBe(
-        "date || credit || debit || balance\r\n14/01/2023 || || 500.00 || 2500.00\r\n13/01/2023 || 2000.00 || || 3000.00\r\n10/01/2023 || 1000.00 || || 1000.00"
+        "date || credit || debit || balance" +
+          "\r\n" +
+          "14/01/2023 || || 500.00 || 2500.00" +
+          "\r\n" +
+          "13/01/2023 || 2000.00 || || 3000.00" +
+          "\r\n" +
+          "10/01/2023 || 1000.00 || || 1000.00"
       );
     });
   });
