@@ -1,65 +1,32 @@
-const Transaction = require("./transaction");
-const moment = require("moment");
-
 class Account {
-  constructor(transactionClass) {
+  constructor(transactionClass, statementFormatterClass) {
     this.transactionClass = transactionClass;
+    this.statementFormatterClass = statementFormatterClass;
     this.transactions = [];
   }
 
-  getBalance() {
-    return this.#calculateBalanceAtIndex(0);
+  getBalance(transactionID) {
+    return !transactionID ? this.#calculateBalanceAtIndex(0) : this.#calculateBalanceAtIndex(transactionID)
   }
 
   deposit(amount, dateTransacted) {
     this.transactions.unshift(
-      new Transaction(amount, dateTransacted, this.balance)
+      new this.transactionClass(amount, dateTransacted, this.balance)
     );
   }
 
   withdraw(amount, dateTransacted) {
     this.transactions.unshift(
-      new Transaction(-amount, dateTransacted, this.balance)
+      new this.transactionClass(-amount, dateTransacted, this.balance)
     );
   }
 
-  statement() {
-    let statement = this.transactions.map((transaction, index) => {
-      return this.#formatStatementLine(transaction, index)
-    });
-
-    this.#addStatementHeader(statement)
-
-    return statement.join("\r\n");
+  getTransactions(){
+    return this.transactions
   }
 
-  #addStatementHeader(statement){
-    return statement.unshift("date || credit || debit || balance");
-  }
-
-  #formatStatementLine(transaction, index){
-    
-    let statementLine =  this.#formatTransactionDate(transaction)
-    statementLine += this.#formatDebitCredit(transaction)
-    statementLine += this.#formatBalanceAtTransaction(index)
-
-    return statementLine;
-  }
-
-  #formatBalanceAtTransaction(index){
-    return `${this.#calculateBalanceAtIndex(index).toFixed(2)}`;
-  }
-
-  #formatDebitCredit(transaction){
-    const amount = transaction.getAmount();
-    return amount > 0
-    ? ` || ${amount.toFixed(2)} || || `
-    : ` || || ${(-amount).toFixed(2)} || `;
-  }
-
-  #formatTransactionDate(transaction){
-    const dateTransacted = moment(transaction.dateTransacted, "DD-MM-YYYY");
-    return moment(dateTransacted).format("DD/MM/YYYY");
+  printStatement() {
+    return new this.statementFormatterClass(this.self).generateStatement()
   }
 
   #calculateBalanceAtIndex(index){
@@ -69,6 +36,7 @@ class Account {
     }
     return balance
   }
+
 }
 
 module.exports = Account;
