@@ -37,6 +37,7 @@ $> npx jest
 ```
 
 ## How to use
+---
 
 Start node from root of application
 
