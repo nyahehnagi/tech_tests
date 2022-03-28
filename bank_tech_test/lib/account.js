@@ -1,6 +1,6 @@
 class Account {
-  constructor(statementFormatterClass) {
-    this.statementFormatterClass = statementFormatterClass;
+  constructor(statementFormatter) {
+    this.statementFormatter = statementFormatter;
     this.transactions = [];
   }
 
@@ -26,7 +26,7 @@ class Account {
   }
 
   printStatement() {
-    return new this.statementFormatterClass(this).generateStatement();
+    return this.statementFormatter.generateStatement(this);
   }
 
   #calculateBalanceAtIndex(index) {

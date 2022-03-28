@@ -5,7 +5,7 @@ describe("account", () => {
 
   let account;
   beforeEach(() => {
-    account = new Account(StatementFormatter);
+    account = new Account(new StatementFormatter());
   });
 
   describe("#getBalance", () => {
