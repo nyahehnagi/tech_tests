@@ -2,7 +2,6 @@ const Account = require("../lib/account.js");
 const StatementFormatter = require("../lib/statementformatter.js");
 
 describe("account", () => {
-
   let account;
   beforeEach(() => {
     account = new Account(new StatementFormatter());
@@ -44,10 +43,9 @@ describe("account", () => {
   describe("printStatement", () => {
     it("checks that generateStatement has beenn called", () => {
       account.deposit(1000, "10-01-2023");
-      const spy = jest.spyOn(StatementFormatter.prototype, 'generateStatement');
-      account.printStatement()
+      const spy = jest.spyOn(StatementFormatter.prototype, "generateStatement");
+      account.printStatement();
       expect(spy).toHaveBeenCalled();
     });
   });
-
 });

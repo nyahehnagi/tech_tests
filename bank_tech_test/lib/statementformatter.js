@@ -2,7 +2,6 @@ const moment = require("moment");
 const STATEMENT_HEADER = "date || credit || debit || balance";
 
 class StatementFormatter {
-
   generateStatement(account) {
     let statement = account.getTransactions().map((transaction, index) => {
       return this.#formatStatementLine(transaction, account.getBalance(index));

@@ -6,19 +6,21 @@ class Account {
 
   // Default to the most recent transaction
   getBalance(transactionID = 0) {
-    return  this.#calculateBalanceAtIndex(transactionID);
+    return this.#calculateBalanceAtIndex(transactionID);
   }
 
   deposit(amount, dateTransacted) {
-    this.transactions.unshift(
-      {amount: amount, dateTransacted: dateTransacted}
-    );
+    this.transactions.unshift({
+      amount: amount,
+      dateTransacted: dateTransacted,
+    });
   }
 
   withdraw(amount, dateTransacted) {
-    this.transactions.unshift(
-      {amount: -amount, dateTransacted: dateTransacted}
-    );
+    this.transactions.unshift({
+      amount: -amount,
+      dateTransacted: dateTransacted,
+    });
   }
 
   getTransactions() {
