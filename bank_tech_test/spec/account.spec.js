@@ -49,6 +49,12 @@ describe("account", () => {
       }).toThrow('Invalid Date');
     })
 
+    it("throws an error if amount is not a number", () =>{
+      expect(() => {
+        account.deposit("number", '10-01-2023');
+      }).toThrow('Invalid Amount');
+    })
+
   });
 
   describe("withdraw", () => {
@@ -62,6 +68,13 @@ describe("account", () => {
         account.withdraw(500, '10/01/2023');
       }).toThrow('Invalid Date');
     })
+
+    it("throws an error if amount is not a number", () =>{
+      expect(() => {
+        account.withdraw("number", '10-01-2023');
+      }).toThrow('Invalid Amount');
+    })
+
   });
 
   describe("printStatement", () => {
