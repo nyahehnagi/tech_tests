@@ -51,13 +51,28 @@ perform the following actions as demonstrated in the screenshot
 
 # Design Approach
 
-- Key nouns were extracted, at the time this was Account, Statement and Transaction. These would form the basis of my class design
+- Key nouns were extracted, at the time this was Account, Statement and Transaction (this later changed to a javascript object). These would form the basis of my class design
 - All code is fully test driven, with a red, green, refactor cycle. See commits to follow my process
 - Build started with an Account class and was focused initially on simple elements, so in my case this was a straightforward deposit
 - I built on the deposit and added withdrawal.
 - I then introduced the concept of date when looking at the statement. I built the statement in small chunks, starting with the date element and hard coding the rest and then generalised debit/credit and finally added the balance
-- I taken the approach that the balance is a computed value rather than a stored value
+- I have taken the approach that the balance is a computed value rather than a stored value
 - I have decided not to mock the moment package, this is because I want to test the date conversions are correct. The Account class however is mocked in the StatementFormatter
+
+# Classes
+## Account = Responsible for the client account.
+
+It has the following public methods
+- deposit(amount, dateTransacted) - accepts an amount and the date the transactions took place
+- withdraw(amount, dateTransacted) - accepts an amount and the date the transactions took place
+- getTransactions() - returns a list of transactions against the account
+- getBalance(transactionLocation) accepts an index of a transaction to compute what the balance was at the time of the transaction
+- printStatments() - returns a formatted statement of all transactions
+## StatementFormatter = Responsible for formatting a statement
+It has the following public methods
+
+generateStatement(account) = accepts an account and returns a formatted statement
+
 
 # Bank tech test
 
