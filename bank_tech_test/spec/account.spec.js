@@ -44,11 +44,9 @@ describe("account", () => {
     });
 
     it("throws an error if date not in expected format", () =>{
-      try{
+      expect(() => {
         account.deposit(1000, '10/01/2023')
-      } catch (error){
-        expect(error.message).toBe('Invalid Date');
-      }
+      }).toThrow('Invalid Date');
     })
 
   });
@@ -60,11 +58,9 @@ describe("account", () => {
     });
 
     it("throws an error if date not in expected format", () =>{
-      try{
-        account.withdraw(1000, '10/01/2023')
-      } catch (error){
-        expect(error.message).toBe('Invalid Date');
-      }
+      expect(() => {
+        account.withdraw(500, '10/01/2023');
+      }).toThrow('Invalid Date');
     })
   });
 
