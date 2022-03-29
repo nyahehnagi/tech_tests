@@ -49,6 +49,17 @@ perform the following actions as demonstrated in the screenshot
 
 ![alt text](https://github.com/nyahehnagi/tech_tests/blob/main/bank_tech_test/docs/bank_tech_test_screenshot.png)
 
+
+# Design Approach
+
+- Key nouns were extracted, at the time this was Account, Statement and Transaction. These would form the basis of my class design
+- All code is fully test driven, with a red, green, refactor cycle. See commits to follow my process
+- Build started with an Account class and was focused initially on simple elements, so in my case this was a straightforward deposit
+- I built on the deposit and added withdrawal.
+- I then introduced the concept of date when looking at the statement. I built the statement in small chunks, starting with the date element and hard coding the rest and then generalised debit/credit and finally added the balance
+- I taken the approach that the balance is a computed value rather than a stored value
+- I have decided not to mock the moment package, this is because I want to test the date conversions are correct. The Account class however is mocked in the StatementFormatter
+
 # Bank tech test
 
 Today, you'll practice doing a tech test.

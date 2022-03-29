@@ -1,15 +1,19 @@
+const moment = require("moment");
+
 class Account {
   constructor(statementFormatter) {
     this.statementFormatter = statementFormatter;
     this.transactions = [];
   }
 
-  // Default to the most recent transaction
+  // Default to the most recent transaction and thus latest balance
   getBalance(transactionLocation = 0) {
     return this.#calculateBalanceAtIndex(transactionLocation);
   }
 
   deposit(amount, dateTransacted) {
+    if (!this.#validDate(dateTransacted)) { throw new Error('Invalid Date') }
+
     this.transactions.unshift({
       amount: amount,
       dateTransacted: dateTransacted,
@@ -17,6 +21,7 @@ class Account {
   }
 
   withdraw(amount, dateTransacted) {
+    if (!this.#validDate(dateTransacted)) { throw new Error('Invalid Date') }
     this.transactions.unshift({
       amount: -amount,
       dateTransacted: dateTransacted,
@@ -37,6 +42,10 @@ class Account {
       balance += this.transactions[i].amount;
     }
     return balance;
+  }
+
+  #validDate(dateTransacted){
+    return moment(dateTransacted, "DD-MM-YYYY", true).isValid()
   }
 }
 
