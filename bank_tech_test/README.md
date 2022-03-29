@@ -49,7 +49,6 @@ perform the following actions as demonstrated in the screenshot
 
 ![alt text](https://github.com/nyahehnagi/tech_tests/blob/main/bank_tech_test/docs/bank_tech_test_screenshot.png)
 
-
 # Design Approach
 
 - Key nouns were extracted, at the time this was Account, Statement and Transaction. These would form the basis of my class design

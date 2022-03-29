@@ -12,8 +12,7 @@ class Account {
   }
 
   deposit(amount, dateTransacted) {
-    if (!this.#validDate(dateTransacted)) { throw new Error('Invalid Date') }
-    if (!this.#validNumber(amount)) { throw new Error('Invalid Amount') }
+    this.#validateInput(amount, dateTransacted);
 
     this.transactions.unshift({
       amount: amount,
@@ -22,8 +21,7 @@ class Account {
   }
 
   withdraw(amount, dateTransacted) {
-    if (!this.#validDate(dateTransacted)) { throw new Error('Invalid Date') }
-    if (!this.#validNumber(amount)) { throw new Error('Invalid Amount') }
+    this.#validateInput(amount, dateTransacted);
 
     this.transactions.unshift({
       amount: -amount,
@@ -47,12 +45,21 @@ class Account {
     return balance;
   }
 
-  #validDate(dateTransacted){
-    return moment(dateTransacted, "DD-MM-YYYY", true).isValid()
+  #validateInput(amount, dateTransacted) {
+    if (!this.#validDate(dateTransacted)) {
+      throw new Error("Invalid Date");
+    }
+    if (!this.#validNumber(amount)) {
+      throw new Error("Invalid Amount");
+    }
   }
 
-  #validNumber(amount){
-    return !(amount === undefined || typeof amount !== 'number')
+  #validDate(dateTransacted) {
+    return moment(dateTransacted, "DD-MM-YYYY", true).isValid();
+  }
+
+  #validNumber(amount) {
+    return !(amount === undefined || typeof amount !== "number");
   }
 }
 
