@@ -3,7 +3,6 @@ const STATEMENT_HEADER = "date || credit || debit || balance";
 
 class StatementFormatter {
   generateStatement(transactions) {
-    console.log(transactions)
     let statement = transactions.map((transaction, index) => {
       return this.#formatStatementLine(transaction, this.#calculateBalanceAtIndex(transactions, index));
     });

@@ -28,7 +28,7 @@ class Account {
   }
 
   printStatement() {
-    return this.statementFormatter.generateStatement(this.transactions);
+    console.log(this.statementFormatter.generateStatement(this.transactions))
   }
 
   #calculateBalanceAtIndex(index) {
