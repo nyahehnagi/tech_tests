@@ -12,7 +12,7 @@ class Account {
   }
 
   deposit(amount) {
-    if (!this.#validNumber(amount)) throw new Error("Invalid Amount")
+    if (this.#isInvalidNumber(amount)) throw new Error("Invalid Amount")
 
     this.transactions.unshift({
       amount: amount,
@@ -21,7 +21,7 @@ class Account {
   }
 
   withdraw(amount) {
-    if (!this.#validNumber(amount)) throw new Error("Invalid Amount")
+    if (this.#isInvalidNumber(amount)) throw new Error("Invalid Amount")
 
     this.transactions.unshift({
       amount: -amount,
@@ -45,8 +45,8 @@ class Account {
     return balance;
   }
 
-  #validNumber(amount) {
-    return !(amount === undefined || typeof amount !== "number");
+  #isInvalidNumber(amount) {
+    return (amount === undefined || typeof amount !== "number");
   }
 }
 
