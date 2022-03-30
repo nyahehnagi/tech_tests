@@ -73,7 +73,7 @@ It has the following public methods
 - withdraw(amount, dateTransacted) - accepts an amount and the date the transactions took place
 - getTransactions() - returns a list of transactions against the account
 - getBalance(transactionLocation) accepts an index of a transaction to compute what the balance was at the time of the transaction
-- printStatments() - returns a formatted statement of all transactions
+- printStatment() - returns a formatted statement of all transactions
 ## StatementFormatter = Responsible for formatting a statement
 It has the following public methods
 
