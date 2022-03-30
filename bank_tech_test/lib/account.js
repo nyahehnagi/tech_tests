@@ -5,8 +5,8 @@ class Account {
   }
 
   // Default to the most recent transaction and thus latest balance
-  getBalance(transactionLocation = 0) {
-    return this.#calculateBalanceAtIndex(transactionLocation);
+  getBalance() {
+    return this.#calculateBalanceAtIndex(0);
   }
 
   deposit(amount) {
@@ -27,12 +27,8 @@ class Account {
     });
   }
 
-  getTransactions() {
-    return this.transactions;
-  }
-
   printStatement() {
-    return this.statementFormatter.generateStatement(this);
+    return this.statementFormatter.generateStatement(this.transactions);
   }
 
   #calculateBalanceAtIndex(index) {

@@ -2,9 +2,10 @@ const moment = require("moment");
 const STATEMENT_HEADER = "date || credit || debit || balance";
 
 class StatementFormatter {
-  generateStatement(account) {
-    let statement = account.getTransactions().map((transaction, index) => {
-      return this.#formatStatementLine(transaction, account.getBalance(index));
+  generateStatement(transactions) {
+    console.log(transactions)
+    let statement = transactions.map((transaction, index) => {
+      return this.#formatStatementLine(transaction, this.#calculateBalanceAtIndex(transactions, index));
     });
 
     this.#addStatementHeader(statement);
@@ -35,6 +36,14 @@ class StatementFormatter {
 
   #formatTransactionDate(transaction) {
     return moment(transaction.dateTransacted).format("DD/MM/YYYY");
+  }
+
+  #calculateBalanceAtIndex(transactions, index) {
+    let balance = 0;
+    for (var i = index; i <= transactions.length - 1; i++) {
+      balance += transactions[i].amount;
+    }
+    return balance;
   }
 }
 

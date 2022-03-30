@@ -13,30 +13,8 @@ describe("account", () => {
     });
   });
 
-  describe("#getTransactions", () => {
-    it("has a transaction ", () => {
-      mockDate = Date.parse('2022-12-25')
-      Date.now = jest.fn( () => mockDate)
-      
-      account.deposit(1000);
-      expect(account.getTransactions().length).toBe(1);
-      expect(account.getTransactions()[0].amount).toBe(1000);
-      expect(account.getTransactions()[0].dateTransacted).toBe(mockDate);
-    });
-
-    it("has 2 transactions ", () => {
-      account.deposit(1000);
-      mockDate = Date.parse('2022-12-26')
-      Date.now = jest.fn( () => mockDate)
-
-      account.withdraw(500);
-      expect(account.getTransactions().length).toBe(2);
-      expect(account.getTransactions()[0].amount).toBe(-500);
-      expect(account.getTransactions()[0].dateTransacted).toBe(mockDate);
-    });
-  });
-
   describe("#deposit", () => {
+    
     it("has balance of 1000 after depositing 1000", () => {
       account.deposit(1000);
       expect(account.getBalance()).toBe(1000);

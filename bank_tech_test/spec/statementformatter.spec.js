@@ -12,17 +12,9 @@ describe("StatementFormatter", () => {
     it("show the statement for a single deposit", () => {
       mockDate = Date.parse('2023-01-10')
       
-      Account.getTransactions = jest
-        .fn(Account.getTransactions)
-        .mockImplementation(() => [
-          { amount: 1000, dateTransacted: mockDate },
-        ]);
+      transactions = [{ amount: 1000, dateTransacted: mockDate }]
 
-      Account.getBalance = jest
-        .fn(Account.getBalance)
-        .mockImplementation(() => 1000);
-
-      expect(statementFormatter.generateStatement(Account)).toBe(
+      expect(statementFormatter.generateStatement(transactions)).toBe(
         "date || credit || debit || balance\r\n10/01/2023 || 1000.00 || || 1000.00"
       );
     });
@@ -31,18 +23,10 @@ describe("StatementFormatter", () => {
       mockDateOne = Date.parse('2023-01-13')
       mockDateTwo = Date.parse('2023-01-10')
 
-      Account.getTransactions = jest
-        .fn(Account.getTransactions)
-        .mockImplementation(() => [
-          { amount: 2000, dateTransacted: mockDateOne },
-          { amount: 1000, dateTransacted: mockDateTwo },
-        ]);
+      transactions = [{ amount: 2000, dateTransacted: mockDateOne },
+        { amount: 1000, dateTransacted: mockDateTwo }]
 
-      Account.getBalance = jest
-        .fn(Account.getBalance)
-        .mockReturnValueOnce(3000)
-        .mockReturnValueOnce(1000);
-      expect(statementFormatter.generateStatement(Account)).toBe(
+      expect(statementFormatter.generateStatement(transactions)).toBe(
         "date || credit || debit || balance" +
           "\r\n" +
           "13/01/2023 || 2000.00 || || 3000.00" +
@@ -56,21 +40,11 @@ describe("StatementFormatter", () => {
       mockDateTwo = Date.parse('2023-01-13')
       mockDateThree = Date.parse('2023-01-10')
 
-      Account.getTransactions = jest
-        .fn(Account.getTransactions)
-        .mockImplementation(() => [
-          { amount: -500, dateTransacted: mockDateOne },
-          { amount: 2000, dateTransacted: mockDateTwo },
-          { amount: 1000, dateTransacted: mockDateThree },
-        ]);
+      transactions = [{ amount: -500, dateTransacted: mockDateOne },
+      { amount: 2000, dateTransacted: mockDateTwo },
+      { amount: 1000, dateTransacted: mockDateThree }]
 
-      Account.getBalance = jest
-        .fn(Account.getBalance)
-        .mockReturnValueOnce(2500)
-        .mockReturnValueOnce(3000)
-        .mockReturnValueOnce(1000);
-
-      expect(statementFormatter.generateStatement(Account)).toBe(
+      expect(statementFormatter.generateStatement(transactions)).toBe(
         "date || credit || debit || balance" +
           "\r\n" +
           "14/01/2023 || || 500.00 || 2500.00" +
