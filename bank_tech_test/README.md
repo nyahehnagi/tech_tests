@@ -1,6 +1,11 @@
 # Bank tech test
 
----
+Simple API to mimic deposit, withdrawal and printing of statements for a bank account
+
+## Tech Used
+
+- Javascript with Node
+- Jest for testing
 
 ## Installation
 
