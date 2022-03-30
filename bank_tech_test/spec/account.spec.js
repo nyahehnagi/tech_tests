@@ -15,18 +15,24 @@ describe("account", () => {
 
   describe("#getTransactions", () => {
     it("has a transaction ", () => {
-      account.deposit(1000, "25-12-2022");
+      mockDate = Date.parse('2022-12-25')
+      Date.now = jest.fn( () => mockDate)
+      
+      account.deposit(1000);
       expect(account.getTransactions().length).toBe(1);
       expect(account.getTransactions()[0].amount).toBe(1000);
-      expect(account.getTransactions()[0].dateTransacted).toBe("25-12-2022");
+      expect(account.getTransactions()[0].dateTransacted).toBe(mockDate);
     });
 
     it("has 2 transactions ", () => {
-      account.deposit(1000, "25-12-2022");
-      account.withdraw(500, "26-12-2022");
+      account.deposit(1000);
+      mockDate = Date.parse('2022-12-26')
+      Date.now = jest.fn( () => mockDate)
+
+      account.withdraw(500);
       expect(account.getTransactions().length).toBe(2);
       expect(account.getTransactions()[0].amount).toBe(-500);
-      expect(account.getTransactions()[0].dateTransacted).toBe("26-12-2022");
+      expect(account.getTransactions()[0].dateTransacted).toBe(mockDate);
     });
   });
 
@@ -42,12 +48,6 @@ describe("account", () => {
       expect(account.getBalance()).toBe(3000);
     });
 
-    it("throws an error if date not in expected format", () => {
-      expect(() => {
-        account.deposit(1000, "10/01/2023");
-      }).toThrow("Invalid Date");
-    });
-
     it("throws an error if amount is not a number", () => {
       expect(() => {
         account.deposit("number", "10-01-2023");
@@ -59,12 +59,6 @@ describe("account", () => {
     it("has balance of -500 if withdraw 500", () => {
       account.withdraw(500, "10-01-2023");
       expect(account.getBalance()).toBe(-500);
-    });
-
-    it("throws an error if date not in expected format", () => {
-      expect(() => {
-        account.withdraw(500, "10/01/2023");
-      }).toThrow("Invalid Date");
     });
 
     it("throws an error if amount is not a number", () => {

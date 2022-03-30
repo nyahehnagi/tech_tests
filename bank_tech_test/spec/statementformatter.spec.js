@@ -10,10 +10,12 @@ describe("StatementFormatter", () => {
     });
 
     it("show the statement for a single deposit", () => {
+      mockDate = Date.parse('2023-01-10')
+      
       Account.getTransactions = jest
         .fn(Account.getTransactions)
         .mockImplementation(() => [
-          { amount: 1000, dateTransacted: "10-01-2023" },
+          { amount: 1000, dateTransacted: mockDate },
         ]);
 
       Account.getBalance = jest
@@ -26,11 +28,14 @@ describe("StatementFormatter", () => {
     });
 
     it("show the statement for 2 deposits", () => {
+      mockDateOne = Date.parse('2023-01-13')
+      mockDateTwo = Date.parse('2023-01-10')
+
       Account.getTransactions = jest
         .fn(Account.getTransactions)
         .mockImplementation(() => [
-          { amount: 2000, dateTransacted: "13-01-2023" },
-          { amount: 1000, dateTransacted: "10-01-2023" },
+          { amount: 2000, dateTransacted: mockDateOne },
+          { amount: 1000, dateTransacted: mockDateTwo },
         ]);
 
       Account.getBalance = jest
@@ -47,12 +52,16 @@ describe("StatementFormatter", () => {
     });
 
     it("show the statement for 2 deposits and withdrawal", () => {
+      mockDateOne = Date.parse('2023-01-14')
+      mockDateTwo = Date.parse('2023-01-13')
+      mockDateThree = Date.parse('2023-01-10')
+
       Account.getTransactions = jest
         .fn(Account.getTransactions)
         .mockImplementation(() => [
-          { amount: -500, dateTransacted: "14-01-2023" },
-          { amount: 2000, dateTransacted: "13-01-2023" },
-          { amount: 1000, dateTransacted: "10-01-2023" },
+          { amount: -500, dateTransacted: mockDateOne },
+          { amount: 2000, dateTransacted: mockDateTwo },
+          { amount: 1000, dateTransacted: mockDateThree },
         ]);
 
       Account.getBalance = jest

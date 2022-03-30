@@ -11,21 +11,21 @@ class Account {
     return this.#calculateBalanceAtIndex(transactionLocation);
   }
 
-  deposit(amount, dateTransacted) {
-    this.#validateInput(amount, dateTransacted);
+  deposit(amount) {
+    this.#validateInput(amount);
 
     this.transactions.unshift({
       amount: amount,
-      dateTransacted: dateTransacted,
+      dateTransacted: Date.now(),
     });
   }
 
-  withdraw(amount, dateTransacted) {
-    this.#validateInput(amount, dateTransacted);
+  withdraw(amount) {
+    this.#validateInput(amount);
 
     this.transactions.unshift({
       amount: -amount,
-      dateTransacted: dateTransacted,
+      dateTransacted: Date.now(),
     });
   }
 
@@ -46,16 +46,9 @@ class Account {
   }
 
   #validateInput(amount, dateTransacted) {
-    if (!this.#validDate(dateTransacted)) {
-      throw new Error("Invalid Date");
-    }
     if (!this.#validNumber(amount)) {
       throw new Error("Invalid Amount");
     }
-  }
-
-  #validDate(dateTransacted) {
-    return moment(dateTransacted, "DD-MM-YYYY", true).isValid();
   }
 
   #validNumber(amount) {

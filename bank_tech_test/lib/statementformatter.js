@@ -34,8 +34,7 @@ class StatementFormatter {
   }
 
   #formatTransactionDate(transaction) {
-    const dateTransacted = moment(transaction.dateTransacted, "DD-MM-YYYY");
-    return moment(dateTransacted).format("DD/MM/YYYY");
+    return moment(transaction.dateTransacted).format("DD/MM/YYYY");
   }
 }
 

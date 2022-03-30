@@ -69,8 +69,8 @@ perform the following actions as demonstrated in the screenshot
 ## Account = Responsible for the client account.
 
 It has the following public methods
-- deposit(amount, dateTransacted) - accepts an amount and the date the transactions took place
-- withdraw(amount, dateTransacted) - accepts an amount and the date the transactions took place
+- deposit(amount) - accepts an amount
+- withdraw(amount) - accepts an amount 
 - getTransactions() - returns a list of transactions against the account
 - getBalance(transactionLocation) accepts an index of a transaction to compute what the balance was at the time of the transaction
 - printStatment() - returns a formatted statement of all transactions
