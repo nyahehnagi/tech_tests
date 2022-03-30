@@ -6,6 +6,7 @@ Simple API to mimic deposit, withdrawal and printing of statements for a bank ac
 
 - Javascript with Node
 - Jest for testing
+- Prettier for linting
 
 ## Installation
 
