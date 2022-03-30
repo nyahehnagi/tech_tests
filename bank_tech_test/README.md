@@ -63,7 +63,7 @@ perform the following actions as demonstrated in the screenshot
 - I built on the deposit and added withdrawal.
 - I then introduced the concept of date when looking at the statement. I built the statement in small chunks, starting with the date element and hard coding the rest and then generalised debit/credit and finally added the balance
 - I have taken the approach that the balance is a computed value rather than a stored value
-- I have decided not to mock the moment package, this is because I want to test the date conversions are correct. The Account class however is mocked in the StatementFormatter
+- I have decided not to mock the moment package, this is because I want to test the date conversions are correct.
 
 # Classes
 ## Account = Responsible for the client account.
@@ -71,13 +71,12 @@ perform the following actions as demonstrated in the screenshot
 It has the following public methods
 - deposit(amount) - accepts an amount
 - withdraw(amount) - accepts an amount 
-- getTransactions() - returns a list of transactions against the account
-- getBalance(transactionLocation) accepts an index of a transaction to compute what the balance was at the time of the transaction
-- printStatment() - returns a formatted statement of all transactions
+- getBalance() - returns the current balance
+- printStatment() - prints a formatted statement of all transactions
 ## StatementFormatter = Responsible for formatting a statement
 It has the following public methods
 
-generateStatement(account) = accepts an account and returns a formatted statement
+generateStatement(transactions) = accepts a list of transactions and returns a formatted string 
 
 
 # Bank tech test
