@@ -1,5 +1,3 @@
-const moment = require("moment");
-
 class Account {
   constructor(statementFormatter) {
     this.statementFormatter = statementFormatter;
