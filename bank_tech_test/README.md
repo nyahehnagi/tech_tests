@@ -52,9 +52,30 @@ Start node from root of application
 
 `$> node`
 
-perform the following actions as demonstrated in the screenshot
+perform the following actions as demonstrated below
 
-![alt text](https://github.com/nyahehnagi/tech_tests/blob/main/bank_tech_test/docs/bank_tech_test_screenshot.png)
+~~~~
+> const Account = require("./lib/account.js")
+undefined
+> const StatementFormatter = require("./lib/statementformatter.js");
+undefined
+> myStatementFormatter = new StatementFormatter()
+StatementFormatter {}
+> myAccount = new Account(myStatementFormatter)
+Account { statementFormatter: StatementFormatter {}, transactions: [] }
+> myAccount.deposit(100)
+undefined
+> myAccount.deposit(200)
+undefined
+> myAccount.withdraw(30)
+undefined
+> myAccount.printStatement()
+date || credit || debit || balance
+30/03/2022 || || 30.00 || 270.00
+30/03/2022 || 200.00 || || 300.00
+30/03/2022 || 100.00 || || 100.00
+undefined
+~~~~
 
 # Design Approach
 
