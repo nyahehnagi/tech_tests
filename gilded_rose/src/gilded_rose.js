@@ -12,7 +12,11 @@ class Shop {
   }
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      switch (this.items[i].name) {
+
+      const name = this.#isConjured(this.items[i].name) ? "Conjured" : this.items[i].name
+      console.log(name)
+
+      switch (name) {
         case "Sulfuras, Hand of Ragnaros":
           break;
         case "Aged Brie":
@@ -21,7 +25,7 @@ class Shop {
         case "Backstage passes to a TAFKAL80ETC concert":
           this.#processBackStagePass(this.items[i]);
           break;
-        case "Conjured Mana Cake":
+        case "Conjured":
           this.#processConjuredItem(this.items[i]);
           break;
         default:
@@ -30,6 +34,10 @@ class Shop {
     }
 
     return this.items;
+  }
+
+  #isConjured(name){
+    return name.includes("Conjured")
   }
 
   #processConjuredItem(item) {

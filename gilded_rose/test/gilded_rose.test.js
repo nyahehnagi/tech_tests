@@ -121,6 +121,14 @@ describe("Gilded Rose", function () {
     expect(items[0].sellIn).toBe(2);
   });
 
+  it("Conjured items degrade by 2 per day", () => {
+    const gildedRose = new Shop([new Item("Conjured Mana Biscuit", 3, 6)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(4);
+    expect(items[0].sellIn).toBe(2);
+  });
+
+
   it("Conjured items cannot go below 0 quality", () => {
     const gildedRose = new Shop([new Item("Conjured Mana Cake", 3, 1)]);
     const items = gildedRose.updateQuality();
