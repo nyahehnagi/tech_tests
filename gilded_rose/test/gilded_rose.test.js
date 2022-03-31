@@ -96,6 +96,15 @@ describe("Gilded Rose", function () {
     expect(items[0].sellIn).toBe(0);
   });
 
+  it("Backstage pass cannot go beyond 50 quality", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 1, 47),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(50);
+    expect(items[0].sellIn).toBe(0);
+  });
+
   it("Backstage pass cannot go below 0 quality after going to zero", () => {
     const gildedRose = new Shop([
       new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
