@@ -23,10 +23,10 @@ $> git clone git@github.com:nyahehnagi/tech_tests.git
 
 ```
 
-navigate to the bank_tech_test directory
+navigate to the gilded_rose directory
 
 ```
-$> cd bank_tech_test
+$> cd gilded_rose
 ```
 
 ## Testing
