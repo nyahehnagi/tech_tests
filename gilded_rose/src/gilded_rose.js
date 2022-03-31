@@ -22,7 +22,7 @@ class Shop {
           this.#processBackStagePass(this.items[i]);
           break;
         case "Conjured Mana Cake":
-          this.#processConjuredItem(this.items[i])
+          this.#processConjuredItem(this.items[i]);
           break;
         default:
           this.#processNormalItem(this.items[i]);
@@ -32,7 +32,7 @@ class Shop {
     return this.items;
   }
 
-  #processConjuredItem(item){
+  #processConjuredItem(item) {
     this.#updateQuality(item, -2);
     this.#reduceSellin(item, 1);
   }
@@ -72,13 +72,9 @@ class Shop {
   }
 
   #updateQuality(item, amount) {
-    if (item.quality + amount >= 0 && item.quality + amount <= 50) {
-      item.quality = item.quality + amount;
-    }else if (item.quality + amount <= 0){
-      item.quality = 0
-    }else if (item.quality + amount >= 50){
-      item.quality = 50
-    }
+    item.quality = item.quality + amount;
+    if (item.quality <= 0) item.quality = 0;
+    if (item.quality >= 50) item.quality = 50;
   }
 }
 
