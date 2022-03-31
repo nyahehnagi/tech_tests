@@ -35,6 +35,13 @@ describe("Gilded Rose", function() {
     expect(items[0].sellIn).toBe(1);
   })
 
+  it("brie cannot go beyond 50 quality", () => {
+    const gildedRose = new Shop([new Item("Aged Brie", 1, 50)]);
+    const items = gildedRose.updateQuality()
+    expect(items[0].quality).toBe(50);
+    expect(items[0].sellIn).toBe(0);
+  })
+
   it("Back stage passes increase in quality by 1 if sellin > 10", () => {
     const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 11, 10)]);
     const items = gildedRose.updateQuality()
@@ -62,6 +69,13 @@ describe("Gilded Rose", function() {
     const items = gildedRose.updateQuality()
     expect(items[0].quality).toBe(0);
     expect(items[0].sellIn).toBe(-1);
+  })
+
+  it("Backstage pass cannot go beyond 50 quality", () => {
+    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 1, 50)]);
+    const items = gildedRose.updateQuality()
+    expect(items[0].quality).toBe(50);
+    expect(items[0].sellIn).toBe(0);
   })
 
 });
