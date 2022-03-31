@@ -10,7 +10,7 @@ class Shop {
   constructor(items = []) {
     this.items = items;
   }
-  
+
   updateQuality() {
     this.items.map((item) => this.#processItem(item))
     return this.items;
@@ -46,12 +46,12 @@ class Shop {
 
   #processConjuredItem(item) {
     this.#updateQuality(item, -2);
-    this.#reduceSellin(item, 1);
+    this.#reduceSellin(item);
   }
 
   #processAgedBrie(item) {
     this.#updateQuality(item, 1);
-    this.#reduceSellin(item, 1);
+    this.#reduceSellin(item);
   }
 
   #processBackStagePass(item) {
@@ -63,7 +63,7 @@ class Shop {
       this.#updateQuality(item, 1);
     }
 
-    this.#reduceSellin(item, 1);
+    this.#reduceSellin(item);
 
     if (item.sellIn < 0) {
       this.#updateQuality(item, -item.quality);
@@ -72,15 +72,15 @@ class Shop {
 
   #processNormalItem(item) {
     this.#updateQuality(item, -1);
-    this.#reduceSellin(item, 1);
+    this.#reduceSellin(item);
 
     if (item.sellIn < 0) {
       this.#updateQuality(item, -1);
     }
   }
 
-  #reduceSellin(item, amount) {
-    item.sellIn = item.sellIn - amount;
+  #reduceSellin(item) {
+    item.sellIn --
   }
 
   #updateQuality(item, amount) {
