@@ -1,3 +1,9 @@
+## Gilded Rose
+
+An epic shop which is based in Azeroth. It shows the items for sale on a daily basis showing how their quality degrades over time.
+
+This is a challenge focused on refactoring and testing. 
+
 ## Installation
 
 ---
