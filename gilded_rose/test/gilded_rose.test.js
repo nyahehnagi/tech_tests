@@ -28,6 +28,13 @@ describe("Gilded Rose", function() {
     expect(items[0].sellIn).toBe(-1);
   })
 
+  it("a normal item cannot not be negative quality", () => {
+    const gildedRose = new Shop([new Item("Normal Item", 0, 0)]);
+    const items = gildedRose.updateQuality()
+    expect(items[0].quality).toBe(0);
+    expect(items[0].sellIn).toBe(-1);
+  })
+
   it("Aged Brie increases in quality", () => {
     const gildedRose = new Shop([new Item("Aged Brie", 2, 0)]);
     const items = gildedRose.updateQuality()
@@ -78,4 +85,10 @@ describe("Gilded Rose", function() {
     expect(items[0].sellIn).toBe(0);
   })
 
+  it("Backstage pass cannot go below 0 quality after going to zero", () => {
+    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0)]);
+    const items = gildedRose.updateQuality()
+    expect(items[0].quality).toBe(0);
+    expect(items[0].sellIn).toBe(-2);
+  })
 });
