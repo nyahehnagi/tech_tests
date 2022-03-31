@@ -13,8 +13,8 @@ class Shop {
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
 
-      const name = this.#isConjured(this.items[i].name) ? "Conjured" : this.items[i].name
-      
+      const name = this.#formatName(this.items[i].name)
+
       switch (name) {
         case "Sulfuras, Hand of Ragnaros":
           break;
@@ -33,6 +33,10 @@ class Shop {
     }
 
     return this.items;
+  }
+
+  #formatName(name){
+    return this.#isConjured(name) ? "Conjured" : name
   }
 
   #isConjured(name){
