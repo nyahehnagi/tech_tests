@@ -38,10 +38,11 @@ class Shop {
             }
           } 
         }
-        
+
         this.#reduceSellin(this.items[i], 1)
+
         if (this.items[i].sellIn < 0){
-          this.items[i].quality = this.items[i].quality - this.items[i].quality;
+          this.#updateQuality(this.items[i], -this.items[i].quality)
         }
 
       }
@@ -53,9 +54,7 @@ class Shop {
         this.#reduceSellin(this.items[i], 1)
 
         if (this.items[i].sellIn < 0) {
-          if (this.items[i].quality > 0) {
-            this.#updateQuality(this.items[i], -1)
-          }   
+          this.#updateQuality(this.items[i], -1)   
         }
       }
 
@@ -70,7 +69,9 @@ class Shop {
   }
 
   #updateQuality(item, amount){
-    item.quality = item.quality + amount;
+    if (item.quality + amount >= 0){
+      item.quality = item.quality + amount;
+    }
   }
   
 
