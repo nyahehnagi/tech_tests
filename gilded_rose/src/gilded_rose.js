@@ -14,8 +14,7 @@ class Shop {
     for (let i = 0; i < this.items.length; i++) {
 
       const name = this.#isConjured(this.items[i].name) ? "Conjured" : this.items[i].name
-      console.log(name)
-
+      
       switch (name) {
         case "Sulfuras, Hand of Ragnaros":
           break;
