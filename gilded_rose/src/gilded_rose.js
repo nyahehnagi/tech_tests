@@ -10,29 +10,30 @@ class Shop {
   constructor(items = []) {
     this.items = items;
   }
+  
   updateQuality() {
-    for (let i = 0; i < this.items.length; i++) {
-
-      const name = this.#formatName(this.items[i].name)
-
-      switch (name) {
-        case "Sulfuras, Hand of Ragnaros":
-          break;
-        case "Aged Brie":
-          this.#processAgedBrie(this.items[i]);
-          break;
-        case "Backstage passes to a TAFKAL80ETC concert":
-          this.#processBackStagePass(this.items[i]);
-          break;
-        case "Conjured":
-          this.#processConjuredItem(this.items[i]);
-          break;
-        default:
-          this.#processNormalItem(this.items[i]);
-      }
-    }
-
+    this.items.map((item) => this.#processItem(item))
     return this.items;
+  }
+
+  #processItem(item){
+    const name = this.#formatName(item.name)
+
+    switch (name) {
+      case "Sulfuras, Hand of Ragnaros":
+        break;
+      case "Aged Brie":
+        this.#processAgedBrie(item);
+        break;
+      case "Backstage passes to a TAFKAL80ETC concert":
+        this.#processBackStagePass(item);
+        break;
+      case "Conjured":
+        this.#processConjuredItem(item);
+        break;
+      default:
+        this.#processNormalItem(item);
+    }
   }
 
   #formatName(name){
