@@ -13,46 +13,54 @@ class Shop {
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
 
-      if (this.items[i].name == 'Sulfuras, Hand of Ragnaros'){
-        // do nothing
-      }
-      else if (this.items[i].name == 'Aged Brie'){
-        this.#updateQuality(this.items[i], 1)
-        this.#reduceSellin(this.items[i], 1)
-      }
-      else if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert'){
-
-          this.#updateQuality(this.items[i], 1)
-
-          if (this.items[i].sellIn < 11) {
-            if (this.items[i].quality < 50) {
-              this.#updateQuality(this.items[i], 1)
-            }
-          }
-          if (this.items[i].sellIn < 6) {
-            if (this.items[i].quality < 50) {
-              this.#updateQuality(this.items[i], 1)
-            }
-          } 
-        
-        this.#reduceSellin(this.items[i], 1)
-
-        if (this.items[i].sellIn < 0){
-          this.#updateQuality(this.items[i], -this.items[i].quality)
-        }
-
-      }
-      else {
-        this.#updateQuality(this.items[i], -1)
-        this.#reduceSellin(this.items[i], 1)
-
-        if (this.items[i].sellIn < 0) {
-          this.#updateQuality(this.items[i], -1)   
-        }
+    switch (this.items[i].name){
+      case 'Sulfuras, Hand of Ragnaros':
+        break; 
+      case 'Aged Brie':
+        this.#processAgedBrie(this.items[i]);
+        break;
+      case 'Backstage passes to a TAFKAL80ETC concert':
+        this.#processBackStagePass(this.items[i])
+        break
+      default:
+        this.#processNormalItem(this.items[i])
       }
     }
 
     return this.items;
+  }
+
+  #processAgedBrie(item) {
+    this.#updateQuality(item, 1)
+    this.#reduceSellin(item, 1)
+  }
+
+  #processBackStagePass(item){
+    
+    if (item.sellIn < 6) {
+      this.#updateQuality(item, 3) 
+    }
+    else if (item.sellIn < 11){
+      this.#updateQuality(item, 2)
+    }
+    else {
+      this.#updateQuality(item, 1)
+    }
+
+    this.#reduceSellin(item, 1)
+
+    if (item.sellIn < 0){
+      this.#updateQuality(item, -item.quality)
+    }
+  }
+
+  #processNormalItem(item){
+    this.#updateQuality(item, -1)
+    this.#reduceSellin(item, 1)
+
+    if (item.sellIn < 0) {
+      this.#updateQuality(item, -1)   
+    }
   }
 
   #reduceSellin(item, amount){
