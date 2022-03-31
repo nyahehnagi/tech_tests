@@ -16,10 +16,17 @@ class Shop {
       if (this.items[i].name == 'Sulfuras, Hand of Ragnaros'){
         // do nothing
       }
+       else if (this.items[i].name == 'Aged Brie'){
+console.log ("Brie FOUND")
+          if (this.items[i].quality < 50) {
+            this.items[i].quality = this.items[i].quality + 1
+          }
+          this.#reduceSellin(this.items[i], 1)
+       }
       else{
 
 
-        if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
+        if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
           if (this.items[i].quality > 0) {
               this.items[i].quality = this.items[i].quality - 1;
           }
@@ -42,7 +49,6 @@ class Shop {
         }
 
         this.#reduceSellin(this.items[i], 1)
-      
 
         if (this.items[i].sellIn < 0) {
           if (this.items[i].name != 'Aged Brie') {
@@ -53,11 +59,7 @@ class Shop {
             } else {
               this.items[i].quality = this.items[i].quality - this.items[i].quality;
             }
-          } else {
-            if (this.items[i].quality < 50) {
-              this.items[i].quality = this.items[i].quality + 1;
-            }
-          }
+          } 
         }
       }
     }
@@ -68,6 +70,8 @@ class Shop {
   #reduceSellin(item, amount){
     item.sellIn = item.sellIn - amount;
   }
+
+
 }
 
 module.exports = {
