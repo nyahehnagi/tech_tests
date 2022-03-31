@@ -17,14 +17,11 @@ class Shop {
         // do nothing
       }
       else if (this.items[i].name == 'Aged Brie'){
-        if (this.items[i].quality < 50) {
-          this.#updateQuality(this.items[i], 1)
-        }
+        this.#updateQuality(this.items[i], 1)
         this.#reduceSellin(this.items[i], 1)
       }
       else if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert'){
 
-        if (this.items[i].quality < 50) {
           this.#updateQuality(this.items[i], 1)
 
           if (this.items[i].sellIn < 11) {
@@ -37,8 +34,7 @@ class Shop {
               this.#updateQuality(this.items[i], 1)
             }
           } 
-        }
-
+        
         this.#reduceSellin(this.items[i], 1)
 
         if (this.items[i].sellIn < 0){
@@ -47,18 +43,13 @@ class Shop {
 
       }
       else {
-        if (this.items[i].quality > 0) {
-            this.#updateQuality(this.items[i], -1)
-        }
-    
+        this.#updateQuality(this.items[i], -1)
         this.#reduceSellin(this.items[i], 1)
 
         if (this.items[i].sellIn < 0) {
           this.#updateQuality(this.items[i], -1)   
         }
       }
-
-
     }
 
     return this.items;
@@ -69,7 +60,7 @@ class Shop {
   }
 
   #updateQuality(item, amount){
-    if (item.quality + amount >= 0){
+    if (item.quality + amount >= 0 && item.quality + amount <= 50){
       item.quality = item.quality + amount;
     }
   }
