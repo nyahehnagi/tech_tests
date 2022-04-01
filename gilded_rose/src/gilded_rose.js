@@ -1,6 +1,12 @@
 const MIN_QUALITY = 0
 const MAX_QUALITY = 50
 
+const itemName = {
+  "SULFURAS" : "Sulfuras, Hand of Ragnaros",
+  "BACKSTAGE" : "Backstage passes to a TAFKAL80ETC concert",
+  "CONJURED" : "Conjured",
+  "BRIE" : "Aged Brie"
+}
 
 class Item {
   constructor(name, sellIn, quality) {
@@ -24,15 +30,15 @@ class Shop {
     const name = this.#formatName(item.name)
 
     switch (name) {
-      case "Sulfuras, Hand of Ragnaros":
+      case itemName["SULFURAS"]:
         break;
-      case "Aged Brie":
+      case itemName["BRIE"]:
         this.#processAgedBrie(item);
         break;
-      case "Backstage passes to a TAFKAL80ETC concert":
+      case itemName["BACKSTAGE"]:
         this.#processBackStagePass(item);
         break;
-      case "Conjured":
+      case itemName["CONJURED"]:
         this.#processConjuredItem(item);
         break;
       default:
