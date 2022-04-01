@@ -1,3 +1,7 @@
+const MIN_QUALITY = 0
+const MAX_QUALITY = 50
+
+
 class Item {
   constructor(name, sellIn, quality) {
     this.name = name;
@@ -85,8 +89,8 @@ class Shop {
 
   #updateQuality(item, amount) {
     item.quality = item.quality + amount;
-    if (item.quality <= 0) item.quality = 0;
-    if (item.quality >= 50) item.quality = 50;
+    if (item.quality <= MIN_QUALITY) item.quality = MIN_QUALITY;
+    if (item.quality >= MAX_QUALITY) item.quality = MAX_QUALITY;
   }
 }
 
