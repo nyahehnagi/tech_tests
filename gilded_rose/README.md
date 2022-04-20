@@ -1,3 +1,17 @@
+## Feedback to take forward 
+
+- The code is quite readable and naming is clear — though it's common to prefer if spanning over more than one line (even if the "body" contains only one instruction) to improve readability:
+if (item.quality <= MIN_QUALITY) {
+  item.quality = MIN_QUALITY;
+}
+- Ideally, there should be one file for each class — two in your case
+- You've written a lot of methods to encapsulate low-level logic, which is good. However the Shop class is a bit packed — can you think of ways to extract some logic of it? For example, for a conjured item, you could think of a class ConjuredItemUpdater, or something similar, that would be responsible to specifically update conjured items, and would contain the related logic. That's one way of splitting the class into smaller ones, but you could think of other ones too
+- Quite a lot of test cases with good coverage, that's good
+- To mock the Item class in the tests, instead of referencing directly the Item class when creating a new item, you can use a JS "object literal", where you literally define its properties and functions — e.g to create a "double" object of the item Aged Brie, you can write:
+const mockAgedBrieItem = { name: 'Aged Brie', quality: 50, sellIn: 1 }
+
+
+
 ## Gilded Rose
 
 An epic shop which is based in Azeroth. It shows the items for sale on a daily basis showing how their quality degrades over time.
